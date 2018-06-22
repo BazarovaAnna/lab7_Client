@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<pancakes>
+    <blin>
+        <size>SMALL</size>
+        <pansnames>PAN</pansnames>
+        <id>1</id>
+    </blin>
+    <blin>
+        <size>MEDIUM</size>
+        <pansnames>CHOC</pansnames>
+        <id>2</id>
+    </blin>
+    <blin>
+        <size>BIG</size>
+        <pansnames>BANANA</pansnames>
+        <id>3</id>
+    </blin>
+</pancakes>
