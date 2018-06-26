@@ -7,9 +7,7 @@ import java.io.*;
 import java.net.*;
 
 
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.*;
 
 public class SampleClient extends Thread
 {
@@ -28,7 +26,9 @@ public class SampleClient extends Thread
             System.out.println("**Client connected to socket");
 
             while (true) {
-                System.out.println("Enter your name;");
+                Locale locale = Locale.getDefault();
+                ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+                System.out.println(rb.getString("Enter"));
                 name=in.nextLine();
                 if (name.length() != 0) {
                     try {

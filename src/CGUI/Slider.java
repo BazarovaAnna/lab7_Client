@@ -1,7 +1,11 @@
 package CGUI;
 
+import client.Windows1251Control;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.*;
 import javax.swing.event.*;
 
@@ -17,10 +21,12 @@ public class Slider extends JPanel
     static final int FPS_INIT = 2;    //initial size
     public static Integer result=2;
     public Slider() {
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         //Create the label.
-        JLabel sliderLabel = new JLabel("Size of your Pancake", JLabel.CENTER);
+        JLabel sliderLabel = new JLabel(rb.getString("Sizeof"), JLabel.CENTER);
         sliderLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         //Create the slider.

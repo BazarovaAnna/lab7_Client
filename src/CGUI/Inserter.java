@@ -1,13 +1,19 @@
 package CGUI;
 
+import client.Windows1251Control;
+
 import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Inserter extends JPanel
         implements PropertyChangeListener {
+    static Locale locale = Locale.getDefault();
+    static ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
     //Values for the fields
     public Integer amount = 0;
 
@@ -15,7 +21,7 @@ public class Inserter extends JPanel
     private JLabel amountLabel;
 
     //Strings for the labels
-    private static String amountString = "Id to choose (can leave 0 to look at all pans choosen): ";
+    private static String amountString = rb.getString("Idtoch");
 
     //Fields for data entry
     private JFormattedTextField amountField;

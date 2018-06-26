@@ -2,15 +2,13 @@ package CGUI;
 
 import client.ClientGUI;
 import client.SampleClient;
+import client.Windows1251Control;
 import model.Pancakes;
 import model.PansNames;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Cartoon extends JPanel {
     private static final int PREF_W = 900;
@@ -23,14 +21,18 @@ public class Cartoon extends JPanel {
 
     public  static LinkedList<Oval> ovals=new LinkedList<>();
     public static TimerAnima ta;
+    public static Locale locale = Locale.getDefault();
+    public static ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
     //int animation=0;
     public Cartoon(){
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
         Rooms = new HashMap<>();
-        Rooms.put("bucket 1", new Rectangle(100,200, ROOM_WIDTH, ROOM_HEIGHT));
-        Rooms.put("bucket 2", new Rectangle(300,400, ROOM_WIDTH, ROOM_HEIGHT));
-        Rooms.put("other bucket", new Rectangle(650,75, ROOM_WIDTH, ROOM_HEIGHT));
-        Rooms.put("bucket 3", new Rectangle(400,95, ROOM_WIDTH, ROOM_HEIGHT));
-        Rooms.put("bucket 4", new Rectangle(100,400, ROOM_WIDTH, ROOM_HEIGHT));
+        Rooms.put(rb.getString("bucket1"), new Rectangle(100,200, ROOM_WIDTH, ROOM_HEIGHT));
+        Rooms.put(rb.getString("bucket2"), new Rectangle(300,400, ROOM_WIDTH, ROOM_HEIGHT));
+        Rooms.put(rb.getString("otherbucket"), new Rectangle(650,75, ROOM_WIDTH, ROOM_HEIGHT));
+        Rooms.put(rb.getString("bucket3"), new Rectangle(400,95, ROOM_WIDTH, ROOM_HEIGHT));
+        Rooms.put(rb.getString("bucket4"), new Rectangle(100,400, ROOM_WIDTH, ROOM_HEIGHT));
 
         makeOvals();
 
@@ -73,13 +75,13 @@ public class Cartoon extends JPanel {
             for(Integer i:new TreeSet<Integer>(SampleClient.pl.Mo.keySet())) {
                 Pancakes pan = SampleClient.pl.Mo.get(i);
                 Color col;
-                if(pan.color.equals("YELLOW")&&pan.name.equals(PansNames.BANANA)){
+                if(pan.name.equals(PansNames.BANANA)){
                     col= Color.YELLOW;
-                }else if(pan.color.equals("BROWN")&&pan.name.equals(PansNames.CHOC)){
+                }else if(pan.name.equals(PansNames.CHOC)){
                     col= Color.GRAY;
-                }else if(pan.color.equals("BLUE")&&pan.name.equals(PansNames.VANILLA)){
+                }else if(pan.name.equals(PansNames.VANILLA)){
                     col= Color.BLUE;
-                }else if(pan.color.equals("RED")&&pan.name.equals(PansNames.PAN)){
+                }else if(pan.name.equals(PansNames.PAN)){
                     col= Color.RED;
                 }else{
                     col=Color.GREEN;

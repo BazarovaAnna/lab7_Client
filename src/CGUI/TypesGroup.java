@@ -1,18 +1,26 @@
 package CGUI;
 
+import client.Windows1251Control;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class TypesGroup extends JPanel implements ActionListener {
-    private String BAN="Pancakes with banana (Yellow)";
-    private String VAN="Pancakes with vanilla (Blue)";
-    private String CHO="Pancakes with chocolate (Grey)";
-    private String SIM="Simple pancakes (Red)";
-    private String ALL="All pancakes";
+    Locale locale = Locale.getDefault();
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+    private String BAN=rb.getString("ban");
+    private String VAN=rb.getString("van");
+    private String CHO=rb.getString("cho");
+    private String SIM=rb.getString("sim");
+    private String ALL=rb.getString("all");
     public String type="ALL";
     public TypesGroup(){
-        JLabel radioLabel = new JLabel("Type of your Pancake", JLabel.CENTER);
+        Locale locale = Locale.getDefault();
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+        JLabel radioLabel = new JLabel(rb.getString("Typeof"), JLabel.CENTER);
         radioLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         //Create the radio buttons.
         JRadioButton banana = new JRadioButton(BAN);

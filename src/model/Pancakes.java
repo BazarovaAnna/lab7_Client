@@ -1,5 +1,10 @@
 package model;
 
+import client.Windows1251Control;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public class Pancakes implements Comparable<Pancakes> {
 	public PansNames name;
 	public Size size;
@@ -12,14 +17,16 @@ public class Pancakes implements Comparable<Pancakes> {
 		this.size=size;
 		this.id=id;
 		this.location=location;
+		Locale locale = Locale.getDefault();
+		ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
 		if(this.name.equals(PansNames.BANANA)){
-			this.color="YELLOW";
+			this.color=rb.getString("YELLOW");
 		}else if(this.name.equals(PansNames.CHOC)){
-			this.color="BROWN";
+			this.color=rb.getString("BROWN");
 		}else if(this.name.equals(PansNames.PAN)){
-			this.color="RED";
+			this.color=rb.getString("RED");
 		}else if(this.name.equals(PansNames.VANILLA)){
-			this.color="BLUE";
+			this.color=rb.getString("BLUE");
 		}
 	}
 
