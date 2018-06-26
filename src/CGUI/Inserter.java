@@ -1,5 +1,6 @@
 package CGUI;
 
+import client.SampleClient;
 import client.Windows1251Control;
 
 import javax.swing.*;
@@ -12,16 +13,13 @@ import java.util.ResourceBundle;
 
 public class Inserter extends JPanel
         implements PropertyChangeListener {
-    static Locale locale = Locale.getDefault();
-    static ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
     //Values for the fields
     public Integer amount = 0;
 
     //Labels to identify the fields
     private JLabel amountLabel;
-
-    //Strings for the labels
-    private static String amountString = rb.getString("Idtoch");
 
     //Fields for data entry
     private JFormattedTextField amountField;
@@ -33,7 +31,7 @@ public class Inserter extends JPanel
         super(new BorderLayout());
         setUpFormats();
         //Create the labels.
-        amountLabel = new JLabel(amountString);
+        amountLabel = new JLabel(rb.getString("Idtoch"));
 
         //Create the text fields and set them up.
         amountField = new JFormattedTextField(amountFormat);

@@ -1,5 +1,6 @@
 package model;
 
+import client.SampleClient;
 import client.Windows1251Control;
 
 import java.util.Locale;
@@ -12,12 +13,17 @@ public enum PansNames {
 	BANANA("BANANA",4);
 
 	int panNum;
-	private final String descr;
+	String descr;
+	String s;
 	PansNames(String s,int e) {
-		Locale locale = Locale.getDefault();
-		ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+		this.s=s;
+		ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
 		descr=rb.getString(s);
 		panNum=e;
+	}
+	public void remakeDescr(){
+		ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
+		descr=rb.getString(s);
 	}
 
 	@Override

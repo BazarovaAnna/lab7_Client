@@ -17,15 +17,16 @@ public class ClientGUI extends Thread {
     public static Cartoon car;
     private OutputStream os;
     private InputStream ins;
+    public JFrame frame;
     public ClientGUI(OutputStream os, InputStream ins){
         this.ins=ins;
         this.os=os;
     }
     @Override
     public void run() {
-        Locale locale = Locale.getDefault();
-        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
-        JFrame frame = new JFrame(rb.getString("Client"));
+        Locale.setDefault(SampleClient.locale);
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
+        frame = new JFrame(rb.getString("Client"));
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -58,5 +59,9 @@ public class ClientGUI extends Thread {
         frame.pack();
         frame.setVisible(true);
 
+    }
+    public void close(){
+        frame.dispose();
+        interrupt();
     }
 }

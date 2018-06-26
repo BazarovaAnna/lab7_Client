@@ -1,5 +1,6 @@
 package CGUI;
 
+import client.SampleClient;
 import client.Windows1251Control;
 
 import javax.swing.*;
@@ -15,8 +16,7 @@ public class Filter extends JPanel implements ActionListener,ItemListener {
     public static String type="ALL";
     public static Integer id=0;
     public boolean allSizes=true;
-    Locale locale = Locale.getDefault();
-    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
     public Filter(){
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         sl = new Slider();

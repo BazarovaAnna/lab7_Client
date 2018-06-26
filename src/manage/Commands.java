@@ -1,15 +1,18 @@
 package manage;
 import client.PansCollection;
+import client.SampleClient;
 import model.Pancakes;
 
 import java.io.*;
 import java.util.Hashtable;
+import java.util.Locale;
 import java.util.TreeSet;
 public  class Commands {
     /**
      * Вызов помощи
      */
     public static PansCollection getCollection(OutputStream os,InputStream ins){
+        //Locale.setDefault(SampleClient.locale);
         try {
             PansCollection ppl=new PansCollection();
             //System.out.println("*");
@@ -23,9 +26,12 @@ public  class Commands {
             for(int i=0; i<retmas0.length;i++){
                 if(retmas0[i].startsWith("<")){
                     try{
+                        //Locale.setDefault(SampleClient.locale);
                         Parse.deserializeXML(retmas0[i]);
+                        //System.out.println(Parse.Size+" "+ Parse.Name+" "+ Parse.Id+" "+Parse.Location);
                         Pancakes pp=new Pancakes(Parse.Size, Parse.Name, Parse.Id, Parse.Location);
                         ppl.Mo.put(pp.id, pp);
+                        //System.out.println(Parse.Size+" "+ Parse.Name+" "+ Parse.Id+" "+Parse.Location);
 
                     }catch(XmlException e){
                         System.out.println(retmas0[i]);

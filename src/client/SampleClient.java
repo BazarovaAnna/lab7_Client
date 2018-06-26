@@ -12,12 +12,17 @@ import java.util.*;
 public class SampleClient extends Thread
 {
     public  static PansCollection pl;
+    public static Locale locale;
+    public static ClientGUI cgui;
     public static void main(String args[])
-    {try {
+    {//Locale.setDefault(new Locale("sv","SE"));
+        locale=Locale.getDefault();
+        try {
         try {
 
             // открываем сокет и коннектимся к localhost:8890
             // получаем сокет сервера
+
             Socket s = new Socket("localhost", 8891);
             OutputStream os = s.getOutputStream();
             InputStream ins= s.getInputStream();
@@ -26,8 +31,7 @@ public class SampleClient extends Thread
             System.out.println("**Client connected to socket");
 
             while (true) {
-                Locale locale = Locale.getDefault();
-                ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+                ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
                 System.out.println(rb.getString("Enter"));
                 name=in.nextLine();
                 if (name.length() != 0) {
@@ -63,7 +67,7 @@ public class SampleClient extends Thread
             pl=Commands.getCollection(os,ins);
 
 
-            ClientGUI cgui=new ClientGUI(os,ins);
+            cgui=new ClientGUI(os,ins);
             cgui.start();
 
             String input;

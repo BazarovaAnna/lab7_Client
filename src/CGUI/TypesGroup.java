@@ -1,5 +1,6 @@
 package CGUI;
 
+import client.SampleClient;
 import client.Windows1251Control;
 
 import javax.swing.*;
@@ -9,8 +10,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class TypesGroup extends JPanel implements ActionListener {
-    Locale locale = Locale.getDefault();
-    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+    ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
     private String BAN=rb.getString("ban");
     private String VAN=rb.getString("van");
     private String CHO=rb.getString("cho");
@@ -18,8 +18,7 @@ public class TypesGroup extends JPanel implements ActionListener {
     private String ALL=rb.getString("all");
     public String type="ALL";
     public TypesGroup(){
-        Locale locale = Locale.getDefault();
-        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
         JLabel radioLabel = new JLabel(rb.getString("Typeof"), JLabel.CENTER);
         radioLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         //Create the radio buttons.

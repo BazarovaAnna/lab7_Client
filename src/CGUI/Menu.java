@@ -4,7 +4,10 @@ package CGUI;
 import client.ClientGUI;
 import client.SampleClient;
 import client.Windows1251Control;
+import com.sun.security.ntlm.Client;
 import manage.Commands;
+import model.PansNames;
+import model.Size;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -22,6 +25,10 @@ public class Menu implements ActionListener{
     private static String START_COMMAND = "start";
     private static String STOP_COMMAND = "stop";
     private static String UPDATE_COMMAND = "update";
+    private static String RUS = "rus";
+    private static String ROU = "rou";
+    private static String ENG = "eng";
+    private static String SWE = "swe";
     private Integer size;
     private String type;
     private Integer id;
@@ -39,8 +46,7 @@ public class Menu implements ActionListener{
     public JMenuBar createMenuBar() {
         JMenuBar menuBar;
         JMenu menu;
-        Locale locale = Locale.getDefault();
-        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
         //Create the menu bar.
         menuBar = new JMenuBar();
 
@@ -77,6 +83,46 @@ public class Menu implements ActionListener{
         menuItem3.addActionListener(this);
         menu.add(menuItem3);
 
+        JMenu menu1 = new JMenu(rb.getString("Language"));
+        menu1.setMnemonic(KeyEvent.VK_L);
+        menuBar.add(menu1);
+
+        JMenuItem menuItem4 = new JMenuItem(rb.getString("eng"),
+                KeyEvent.VK_E);
+
+        menuItem4.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_1, ActionEvent.ALT_MASK));
+        menuItem4.setActionCommand(ENG);
+        menuItem4.addActionListener(this);
+        menu1.add(menuItem4);
+
+        JMenuItem menuItem5 = new JMenuItem(rb.getString("rus"),
+                KeyEvent.VK_R);
+
+        menuItem5.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_2, ActionEvent.ALT_MASK));
+        menuItem5.setActionCommand(RUS);
+        menuItem5.addActionListener(this);
+        menu1.add(menuItem5);
+
+        JMenuItem menuItem6 = new JMenuItem(rb.getString("rou"),
+                KeyEvent.VK_O);
+
+        menuItem6.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_3, ActionEvent.ALT_MASK));
+        menuItem6.setActionCommand(ROU);
+        menuItem6.addActionListener(this);
+        menu1.add(menuItem6);
+
+        JMenuItem menuItem7 = new JMenuItem(rb.getString("swe"),
+                KeyEvent.VK_S);
+
+        menuItem7.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_4, ActionEvent.ALT_MASK));
+        menuItem7.setActionCommand(SWE);
+        menuItem7.addActionListener(this);
+        menu1.add(menuItem7);
+
         return menuBar;
     }
     public void actionPerformed(ActionEvent e) {
@@ -99,6 +145,58 @@ public class Menu implements ActionListener{
             SampleClient.pl=Commands.getCollection(os,ins);
             Cartoon.makeOvals();
             ClientGUI.car.repaint();
+        }else if(ROU.equals(command)){
+            SampleClient.locale=new Locale("ro","RO");
+            SampleClient.cgui.close();
+            SampleClient.pl=Commands.getCollection(os,ins);
+            Size.BIG.remakeDescr();
+            Size.MEDIUM.remakeDescr();
+            Size.SMALL.remakeDescr();
+            PansNames.BANANA.remakeDescr();
+            PansNames.VANILLA.remakeDescr();
+            PansNames.PAN.remakeDescr();
+            PansNames.CHOC.remakeDescr();
+            SampleClient.cgui = new ClientGUI(os,ins);
+            SampleClient.cgui.start();
+        }else if(RUS.equals(command)){
+            SampleClient.locale=new Locale("ru","RU");
+            SampleClient.cgui.close();
+            SampleClient.pl=Commands.getCollection(os,ins);
+            Size.BIG.remakeDescr();
+            Size.MEDIUM.remakeDescr();
+            Size.SMALL.remakeDescr();
+            PansNames.BANANA.remakeDescr();
+            PansNames.VANILLA.remakeDescr();
+            PansNames.PAN.remakeDescr();
+            PansNames.CHOC.remakeDescr();
+            SampleClient.cgui = new ClientGUI(os,ins);
+            SampleClient.cgui.start();
+        }else if(SWE.equals(command)){
+            SampleClient.locale=new Locale("sv","SE");
+            SampleClient.cgui.close();
+            SampleClient.pl=Commands.getCollection(os,ins);
+            Size.BIG.remakeDescr();
+            Size.MEDIUM.remakeDescr();
+            Size.SMALL.remakeDescr();
+            PansNames.BANANA.remakeDescr();
+            PansNames.VANILLA.remakeDescr();
+            PansNames.PAN.remakeDescr();
+            PansNames.CHOC.remakeDescr();
+            SampleClient.cgui = new ClientGUI(os,ins);
+            SampleClient.cgui.start();
+        }else if(ENG.equals(command)){
+            SampleClient.locale=new Locale("en","GB");
+            SampleClient.cgui.close();
+            SampleClient.pl=Commands.getCollection(os,ins);
+            Size.BIG.remakeDescr();
+            Size.MEDIUM.remakeDescr();
+            Size.SMALL.remakeDescr();
+            PansNames.BANANA.remakeDescr();
+            PansNames.VANILLA.remakeDescr();
+            PansNames.PAN.remakeDescr();
+            PansNames.CHOC.remakeDescr();
+            SampleClient.cgui = new ClientGUI(os,ins);
+            SampleClient.cgui.start();
         }
     }
 }

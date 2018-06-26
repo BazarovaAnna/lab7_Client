@@ -1,5 +1,6 @@
 package CGUI;
 
+import client.SampleClient;
 import client.Windows1251Control;
 
 import java.awt.*;
@@ -21,8 +22,8 @@ public class Slider extends JPanel
     static final int FPS_INIT = 2;    //initial size
     public static Integer result=2;
     public Slider() {
-        Locale locale = Locale.getDefault();
-        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources",SampleClient.locale, new Windows1251Control());
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         //Create the label.

@@ -1,7 +1,10 @@
 package manage;
+import client.SampleClient;
 import model.Pancakes;
 import model.PansNames;
 import model.Size;
+
+import java.util.Locale;
 
 public class Parse {
     public static PansNames Name;
@@ -10,6 +13,7 @@ public class Parse {
     public static String Location;
 
     static public void deserializeXML(String inputStr) throws XmlException {
+        Locale.setDefault(SampleClient.locale);
         inputStr=inputStr.trim().toUpperCase();
         inputStr=inputStr.replaceAll("[\\s]{2,}", " ");
         int lenght = inputStr.length();

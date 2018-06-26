@@ -1,8 +1,7 @@
 package model;
 
+import client.SampleClient;
 import client.Windows1251Control;
-
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public enum Size {
@@ -12,13 +11,18 @@ public enum Size {
     SMALL("SMALL", 1);
 
     public int sizeNum;
-    private final String descr;
+    String descr;
+    String s;
 
     Size(String s, int e) {
-        Locale locale = Locale.getDefault();
-        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+        this.s=s;
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
         descr = rb.getString(s);
         sizeNum = e;
+    }
+    public void remakeDescr(){
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
+        descr=rb.getString(s);
     }
 
     @Override

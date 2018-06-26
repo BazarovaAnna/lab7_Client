@@ -21,12 +21,11 @@ public class Cartoon extends JPanel {
 
     public  static LinkedList<Oval> ovals=new LinkedList<>();
     public static TimerAnima ta;
-    public static Locale locale = Locale.getDefault();
-    public static ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+
+    public static ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
     //int animation=0;
     public Cartoon(){
-        Locale locale = Locale.getDefault();
-        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", locale, new Windows1251Control());
+        ResourceBundle rb = ResourceBundle.getBundle("locale.Resources", SampleClient.locale, new Windows1251Control());
         Rooms = new HashMap<>();
         Rooms.put(rb.getString("bucket1"), new Rectangle(100,200, ROOM_WIDTH, ROOM_HEIGHT));
         Rooms.put(rb.getString("bucket2"), new Rectangle(300,400, ROOM_WIDTH, ROOM_HEIGHT));
